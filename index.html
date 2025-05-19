@@ -1,0 +1,599 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Marketplace</title>
+<style>
+    body {
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: flex-start;
+        min-height: 100vh;
+        margin: 0;
+        background: Black;
+        color: #ffffff;
+        padding: 20px;
+    }
+
+    h1 {
+        margin: 10px 0;
+        font-size: 40px;
+        color: #e0ffff;
+        font-weight: bold;
+        letter-spacing: 1px;
+    }
+
+    h2 {
+        margin: 5px 0;
+        font-size: 22px;
+        color: #cccccc;
+        font-weight: 600;
+    }
+
+    .logo {
+        width: 100px;
+        height: 100px;
+        border-radius: 50%;
+        margin-bottom: 15px;
+        box-shadow: 0 0 12px rgba(0, 255, 255, 0.5);
+    }
+
+    .section {
+        margin-top: 30px;
+        width: 100%;
+        max-width: 480px;
+        border: 2px solid Black;
+        border-radius: 12px;
+        overflow: hidden;
+        background: linear-gradient(to bottom right, #00ffff20, #000000);
+        box-shadow: 0 6px 20px rgba(0, 255, 255, 0.2);
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .section:hover {
+        transform: scale(1.03);
+        box-shadow: 0 8px 25px rgba(0, 255, 255, 0.3);
+    }
+
+    .section-title {
+        color: #00ffff;
+        font-size: 26px;
+        margin: 15px;
+        text-align: center;
+        font-weight: bold;
+        text-shadow: 0 0 5px #00ffffaa;
+    }
+
+    .clickable {
+        background: rgba(255, 255, 255, 0.1);
+        color: #ffffff;
+        cursor: pointer;
+        margin: 6px 12px;
+        text-align: center;
+        display: block;
+        font-weight: 600;
+        font-size: 18px;
+        border-radius: 8px;
+        transition: background 0.3s, color 0.3s;
+        padding: 12px;
+    }
+
+    .clickable:hover {
+        background: #00ffff;
+        color: #000000;
+    }
+
+    .back-button {
+        margin: 20px;
+        padding: 12px 20px;
+        font-size: 18px;
+        font-weight: bold;
+        color: white;
+        background-color: #00bcd4;
+        border: none;
+        border-radius: 6px;
+        cursor: pointer;
+        transition: background-color 0.3s;
+    }
+
+    .back-button:hover {
+        background-color: #008c9e;
+    }
+
+    .hidden-section {
+        display: none;
+    }
+
+    .search-bar,
+    .global-search-bar {
+        margin: 20px auto;
+        padding: 14px;
+        font-size: 16px;
+        width: 100%;
+        max-width: 400px;
+        border: 1px solid #444;
+        border-radius: 6px;
+        background-color: #1e1e1e;
+        color: #ffffff;
+        transition: border-color 0.3s;
+    }
+
+    .search-bar:focus,
+    .global-search-bar:focus {
+        outline: none;
+        border-color: #00ffff;
+    }
+
+    .global-search-bar::placeholder {
+        color: #999999;
+    }
+
+    .social-icon {
+        width: 42px;
+        height: 42px;
+        cursor: pointer;
+        border-radius: 10px;
+        transition: transform 0.3s, box-shadow 0.3s;
+    }
+
+    .social-icon:hover {
+        transform: scale(1.15);
+        box-shadow: 0 0 8px #00ffff;
+    }
+</style>
+</head>
+<body>
+    
+    <script src="https://publisher.linkvertise.com/cdn/linkvertise.js"></script><script>linkvertise(1334879, {whitelist: [], blacklist: [""]});</script>
+    
+<img alt="Logo" class="logo" src="https://raw.githubusercontent.com/Cat-linkvertise/Cats-Marketplace/refs/heads/main/Marketplace/DP.jpeg"/> <!-- Replace with your logo URL -->
+<h1>Cat</h1>
+<h2 style="margin-top: 0px;">Free</h2>
+<p id="downloadGuide" onclick="showDownloadOptions()" style="color: #007bff; font-weight: bold; font-size: 18px; cursor: pointer;">How To Download</p>
+</div>
+<div id="mainSection">
+<div class="section">
+<div class="clickable" onclick="showSection('addonsSection')">Addons</div>
+
+</div>
+</div>
+<!-- Section templates -->
+<div class="hidden-section" id="shadersSection">
+<h1>Shaders</h1>
+<input class="search-bar" onkeyup="filterContent('shadersSection', this.value)" placeholder="Search..." type="text"/>
+<div class="section">
+</div>
+<button class="back-button" onclick="goBack()">Back</button>
+</div>
+<div class="hidden-section" id="patchedSection">
+<h1>Patched</h1>
+<input class="search-bar" onkeyup="filterContent('patchedSection', this.value)" placeholder="Search..." type="text"/><div class="section">
+</div>
+<button class="back-button" onclick="goBack()">Back</button>
+</div>
+<div class="hidden-section" id="betterrdSection">
+<h1>BetterRD</h1>
+<input class="search-bar" onkeyup="filterContent('betterrdSection', this.value)" placeholder="Search..." type="text"/>
+<div class="section">
+</div>
+<button class="back-button" onclick="goBack()">Back</button>
+</div>
+<div class="hidden-section" id="clientsSection">
+<h1>Clients</h1>
+<input class="search-bar" onkeyup="filterContent('clientsSection', this.value)" placeholder="Search..." type="text"/>
+<div class="section">
+</div>
+<button class="back-button" onclick="goBack()">Back</button>
+</div>
+<div class="show-section" id="addonsSection">
+<input class="search-bar" onkeyup="filterContent('addonsSection', this.value)" placeholder="Search..." type="text"/>
+
+<div class="section">
+  <div class="section-title">Actions And Stuff 1.4</div>
+  <a class="clickable" href="https://www.mediafire.com/file/e9jnttyvwhpgql3/Actions_And_Stuff_1.4_./file" target="_blank">DOWNLOAD</a>
+</div>
+
+<div class="section">
+  <div class="section-title">Advanced Movement</div>
+  <a class="clickable" href="https://www.mediafire.com/file/02my6hfh8c73h24/Advanced_Movement.mcaddon./file" target="_blank">DOWNLOAD</a>
+</div>
+<div class="section">
+  <div class="section-title">Seasons Realism</div>
+  <a class="clickable" href="https://www.mediafire.com/file/ku3tmm3yq95u74b/Seasons_Realism_.mcpack.zip/file" target="_blank">DOWNLOAD</a>
+</div>
+
+<div class="section">
+  <div class="section-title">Security Add-on</div>
+  <a class="clickable" href="https://www.mediafire.com/file/c00e7fo0tqxwxr6/Security_Add-on_.mcaddon/file" target="_blank">DOWNLOAD</a>
+</div>
+
+<div class="section">
+  <div class="section-title">Spark Pets Premium</div>
+  <a class="clickable" href="https://www.mediafire.com/file/uerdsy3how482sz/Spark_Pets_Premium.mcaddon/file" target="_blank">DOWNLOAD</a>
+</div>
+
+<div class="section">
+  <div class="section-title">Sharks</div>
+  <a class="clickable" href="https://www.mediafire.com/file/u0rt0sstp4vplgw/Sharks.mcaddon/file" target="_blank">DOWNLOAD</a>
+</div>
+<div class="section">
+  <div class="section-title">Redstone Tech Addon MCPE 1.21</div>
+  <a class="clickable" href="https://www.mediafire.com/file/l5os39j6yjcpspa/Redstone-Tech-Addon-MCPE-1.21.mcaddon.zip/file" target="_blank">DOWNLOAD</a>
+</div>
+
+<div class="section">
+  <div class="section-title">Advanced Power Suits 2.0</div>
+  <a class="clickable" href="https://www.mediafire.com/file/opuwza8g45frqr5/Advanced_Power_Suits_2.0_.mcaddon/file" target="_blank">DOWNLOAD</a>
+</div>
+
+<div class="section">
+  <div class="section-title">Anime Jutsu 1.2.1</div>
+  <a class="clickable" href="https://www.mediafire.com/file/55p16la6v6szoau/Anime_Jutsu_1.2.1.mcaddon/file" target="_blank">DOWNLOAD</a>
+</div>
+
+<div class="section">
+  <div class="section-title">Armor Expansion Addon</div>
+  <a class="clickable" href="https://www.mediafire.com/file/8rpo22wfmvaikpa/Armor-Expansion-Addon.mcaddon/file" target="_blank">DOWNLOAD</a>
+</div>
+
+<div class="section">
+  <div class="section-title">Better on Bedrock v1.0</div>
+  <a class="clickable" href="https://www.mediafire.com/file/x01cldwhbxyvpqj/Better-on-Bedrock-v1.0.mcaddon/file" target="_blank">DOWNLOAD</a>
+</div>
+
+<div class="section">
+  <div class="section-title">Beyond Survival 1.1</div>
+  <a class="clickable" href="https://www.mediafire.com/file/avozoh6pt61ag4d/Beyond_Survival_1.1.mcaddon/file" target="_blank">DOWNLOAD</a>
+</div>
+
+<div class="section">
+  <div class="section-title">Biomes Add-On</div>
+  <a class="clickable" href="https://www.mediafire.com/file/lcaetqfuwrn9lwv/Biomes_Add-On.mcaddon./file" target="_blank">DOWNLOAD</a>
+</div>
+
+<div class="section">
+  <div class="section-title">Boss Expansion</div>
+  <a class="clickable" href="https://www.mediafire.com/file/oj8jkwo5v7p0932/Boss_Expansion.mcaddon./file" target="_blank">DOWNLOAD</a>
+</div>
+
+<div class="section">
+  <div class="section-title">Bosses Plus</div>
+  <a class="clickable" href="https://www.mediafire.com/file/2zaexpfsp6od1x5/Bosses-Plus_.mcaddon./file" target="_blank">DOWNLOAD</a>
+</div>
+
+<div class="section">
+  <div class="section-title">Bundle Backpack</div>
+  <a class="clickable" href="https://www.mediafire.com/file/4b435hq1indmq1s/Bundle__Backpack_.mcaddon/file" target="_blank">DOWNLOAD</a>
+</div>
+
+<div class="section">
+  <div class="section-title">Carry More</div>
+  <a class="clickable" href="https://www.mediafire.com/file/lfahxlmuzzdk7js/Carry-More.mcaddon./file" target="_blank">DOWNLOAD</a>
+</div>
+
+<div class="section">
+  <div class="section-title">Cars Addon</div>
+  <a class="clickable" href="https://www.mediafire.com/file/wf6dssl1ff3xk60/Cars-Addon.mcaddon./file" target="_blank">DOWNLOAD</a>
+</div>
+
+<div class="section">
+  <div class="section-title">Cave Dweller</div>
+  <a class="clickable" href="https://www.mediafire.com/file/fud457go5hmsuay/Cave_Dweller.mcaddon./file" target="_blank">DOWNLOAD</a>
+</div>
+
+<div class="section">
+  <div class="section-title">Combine Ores 3</div>
+  <a class="clickable" href="https://www.mediafire.com/file/ouocc6ntsoj5l24/Combine_Ores_3.mcaddon./file" target="_blank">DOWNLOAD</a>
+</div>
+
+<div class="section">
+  <div class="section-title">Conquest</div>
+  <a class="clickable" href="https://www.mediafire.com/file/nek4qtxjp10ohxq/Conquest./file" target="_blank">DOWNLOAD</a>
+</div>
+
+<div class="section">
+  <div class="section-title">Construction Addon</div>
+  <a class="clickable" href="https://www.mediafire.com/file/rhzja0ep9zggqck/Construction-Addon.mcaddon./file" target="_blank">DOWNLOAD</a>
+</div>
+
+<div class="section">
+  <div class="section-title">Craft Redstone Addon  </div>
+  <a class="clickable" href="https://www.mediafire.com/file/zjn9x1z6jwwpgbs/Craft-Redstone-Addon--.mcaddon/file" target="_blank">DOWNLOAD</a>
+</div>
+
+<div class="section">
+  <div class="section-title">Decoration Addon</div>
+  <a class="clickable" href="https://www.mediafire.com/file/76dldbk6rpcu6w8/Decoration-Addon.mcaddon./file" target="_blank">DOWNLOAD</a>
+</div>
+
+<div class="section">
+  <div class="section-title">Dinosaur Era</div>
+  <a class="clickable" href="https://www.mediafire.com/file/xd903be2ubvkbdh/Dinosaur-Era.mcaddon./file" target="_blank">DOWNLOAD</a>
+</div>
+
+<div class="section">
+  <div class="section-title">Dinosaurs 1.1</div>
+  <a class="clickable" href="https://www.mediafire.com/file/rj5w77hvitnom2w/Dinosaurs_1.1_.mcaddon/file" target="_blank">DOWNLOAD</a>
+</div>
+
+<div class="section">
+  <div class="section-title">Dinosaurs Addon (HoneyForst)</div>
+  <a class="clickable" href="https://www.mediafire.com/file/xzj3c5kx2jkzczf/Dinosaurs-Addon_%2528HoneyForst%2529.mcaddon./file" target="_blank">DOWNLOAD</a>
+</div>
+
+<div class="section">
+  <div class="section-title">DRAGONS++</div>
+  <a class="clickable" href="https://www.mediafire.com/file/7o387dqt5r0to1e/DRAGONS%252B%252B_.mctemplate/file" target="_blank">DOWNLOAD</a>
+</div>
+
+<div class="section">
+  <div class="section-title">Dragons Addon</div>
+  <a class="clickable" href="https://www.mediafire.com/file/9pya9gdy6c39o34/Dragons-Addon.mcaddon./file" target="_blank">DOWNLOAD</a>
+</div>
+
+<div class="section">
+  <div class="section-title">Dwellers 2.0</div>
+  <a class="clickable" href="https://www.mediafire.com/file/5jnpmikjjcgdr4u/Dwellers_2.0.mcaddon./file" target="_blank">DOWNLOAD</a>
+</div>
+<div class="section">
+  <div class="section-title">Emric Pvp</div>
+  <a class="clickable" href="https://www.mediafire.com/file/hjawrmk2k121h58/Emric_Pvp_../file" target="_blank">DOWNLOAD</a>
+</div>
+
+<div class="section">
+  <div class="section-title">Dynamic Lights Addon</div>
+  <a class="clickable" href="https://www.mediafire.com/file/8zdm35ysc0cbe3m/Dynamic_Lights_Addon_.mcaddon./file" target="_blank">DOWNLOAD</a>
+</div>
+
+<div class="section">
+  <div class="section-title">END REIMAGINED</div>
+  <a class="clickable" href="https://www.mediafire.com/file/ln4rl1u3k1qpyv7/END_REIMAGINED.mctemplate./file" target="_blank">DOWNLOAD</a>
+</div>
+
+<div class="section">
+  <div class="section-title">Essentials 1.5</div>
+  <a class="clickable" href="https://www.mediafire.com/file/poziz0xc3keklcp/Essentials_1.5_By_Yasho.mcaddon.zip/file" target="_blank">DOWNLOAD</a>
+</div>
+
+<div class="section">
+  <div class="section-title">Eternal End</div>
+  <a class="clickable" href="https://www.mediafire.com/file/7gzpjr56wtmdu8n/Eternal_End.mcaddon/file" target="_blank">DOWNLOAD</a>
+</div>
+
+<div class="section">
+  <div class="section-title">Eternal End ()</div>
+  <a class="clickable" href="https://www.mediafire.com/file/q820v9oq9n7zrd5/Eternal_End.mcaddon./file" target="_blank">DOWNLOAD</a>
+</div>
+<div class="section">
+  <div class="section-title">Structure Generation</div>
+  <a class="clickable" href="https://www.mediafire.com/file/18ji8ditzv09zxa/Structure-Generation.mcaddon.zip/file" target="_blank">DOWNLOAD</a>
+</div>
+
+<div class="section">
+  <div class="section-title">The Horror Legend Map MCPE 1.21</div>
+  <a class="clickable" href="https://www.mediafire.com/file/l8o3cpiword29g8/The-Horror-Legend-Map-MCPE-1.21.mctemplate/file" target="_blank">DOWNLOAD</a>
+</div>
+
+<div class="section">
+  <div class="section-title">Trains 1.1 By Lifeboat</div>
+  <a class="clickable" href="https://www.mediafire.com/file/sgv93015ta3e5kn/Trains_1.1_By_Lifeboat.mcaddon.zip/file" target="_blank">DOWNLOAD</a>
+</div>
+
+<div class="section">
+  <div class="section-title">Trains Add-On 1.1</div>
+  <a class="clickable" href="https://www.mediafire.com/file/f6p2sayh81h52q1/Trains_Add-On_1.1.mcaddon.zip/file" target="_blank">DOWNLOAD</a>
+</div>
+
+<div class="section">
+  <div class="section-title">Traps And Trolls</div>
+  <a class="clickable" href="https://www.mediafire.com/file/e6rwdi9467rjd7e/Traps-And-Trolls.mcaddon.zip/file" target="_blank">DOWNLOAD</a>
+</div>
+
+<div class="section">
+  <div class="section-title">Ether Dimension 2</div>
+  <a class="clickable" href="https://www.mediafire.com/file/g8h5807xw4g5yt0/Ether_Dimension_2_.mctemplate/file" target="_blank">DOWNLOAD</a>
+</div>
+
+<div class="section">
+  <div class="section-title">FantasyCraft 1.5</div>
+  <a class="clickable" href="https://www.mediafire.com/file/gvqx4v5pcita8o5/FantasyCraft_1.5.mcaddon/file" target="_blank">DOWNLOAD</a>
+</div>
+
+<div class="section">
+  <div class="section-title">Furniture Add-On 1.4</div>
+  <a class="clickable" href="https://www.mediafire.com/file/z54yv0sijmpsg0j/Furniture_Add-On_1.4.mcaddon./file" target="_blank">DOWNLOAD</a>
+</div>
+
+<div class="section">
+  <div class="section-title">Medieval Knights</div>
+  <a class="clickable" href="https://www.mediafire.com/file/uktylwl5cxbxmva/Medieval-Knights.mcaddon./file" target="_blank">DOWNLOAD</a>
+</div>
+
+<div class="section">
+  <div class="section-title">Lumber Tycoon 2</div>
+  <a class="clickable" href="https://www.mediafire.com/file/2ug2ujlr5pfroci/Lumber_Tycoon_2_.mctemplate./file" target="_blank">DOWNLOAD</a>
+</div>
+
+<div class="section">
+  <div class="section-title">Laser Blaster Addon  </div>
+  <a class="clickable" href="https://www.mediafire.com/file/15wmyvz8a5qgs2k/Laser-Blaster-Addon--.mcaddon./file" target="_blank">DOWNLOAD</a>
+</div>
+
+<div class="section">
+  <div class="section-title">Living Dead By</div>
+  <a class="clickable" href="https://www.mediafire.com/file/m4waxp4twz9vtei/Living_Dead_By_.mcaddon/file" target="_blank">DOWNLOAD</a>
+</div>
+
+<div class="section">
+  <div class="section-title">Furniture Life</div>
+  <a class="clickable" href="https://www.mediafire.com/file/z5a3ssoxth7lzu3/Furniture_Life_.mcaddon/file" target="_blank">DOWNLOAD</a>
+</div>
+
+<div class="section">
+  <div class="section-title">Mermaid Life</div>
+  <a class="clickable" href="https://www.mediafire.com/file/gb191akitkpp45s/Mermaid_Life.mctemplate./file" target="_blank">DOWNLOAD</a>
+</div>
+
+<div class="section">
+  <div class="section-title">More Enchants Add-On</div>
+  <a class="clickable" href="https://www.mediafire.com/file/9lq21i737006fur/More_Enchants_Add-On.mcaddon./file" target="_blank">DOWNLOAD</a>
+</div>
+
+<div class="section">
+  <div class="section-title">Modular Power Armor</div>
+  <a class="clickable" href="https://www.mediafire.com/file/b8c8ji5y8it5wbr/Modular_Power_Armor_.mcaddon/file" target="_blank">DOWNLOAD</a>
+</div>
+
+<div class="section">
+  <div class="section-title">Mob Weapons 1.1</div>
+  <a class="clickable" href="https://www.mediafire.com/file/8wnbisl3etyrrxn/Mob_Weapons_1.1_.mcaddon/file" target="_blank">DOWNLOAD</a>
+</div>
+
+<div class="section">
+  <div class="section-title">Mob Armor Addon  </div>
+  <a class="clickable" href="https://www.mediafire.com/file/zbqp9dfdpixavhh/Mob-Armor-Addon--.mcaddon/file" target="_blank">DOWNLOAD</a>
+</div>
+
+<div class="section">
+  <div class="section-title">Mob Pets</div>
+  <a class="clickable" href="https://www.mediafire.com/file/sneoiw5o3g7lq63/Mob_Pets_.mcaddon/file" target="_blank">DOWNLOAD</a>
+</div>
+
+<div class="section">
+  <div class="section-title">Parasite Outbreak</div>
+  <a class="clickable" href="https://www.mediafire.com/file/p13y1y2bfksp3vj/Parasite_Outbreak.mcaddon./file" target="_blank">DOWNLOAD</a>
+</div>
+
+<div class="section">
+  <div class="section-title">Nomad Addon  </div>
+  <a class="clickable" href="https://www.mediafire.com/file/hrc6mhp8hox1mnc/Nomad-Addon--.mcaddon./file" target="_blank">DOWNLOAD</a>
+</div>
+
+<div class="section">
+  <div class="section-title">No More Grind</div>
+  <a class="clickable" href="https://www.mediafire.com/file/ycjhi7l0cxmvh7a/No_More_Grind.mcaddon/file" target="_blank">DOWNLOAD</a>
+</div>
+
+<div class="section">
+  <div class="section-title">Naturalist 3.0 New</div>
+  <a class="clickable" href="https://www.mediafire.com/file/0s1plyvd4396460/Naturalist_3.0_new.mcaddon./file" target="_blank">DOWNLOAD</a>
+</div>
+
+<div class="section">
+  <div class="section-title">Naturalist 3.0</div>
+  <a class="clickable" href="https://www.mediafire.com/file/j6svnuc06wgeiic/Naturalist_3.0_.mcaddon/file" target="_blank">DOWNLOAD</a>
+</div>
+<div class="section">
+  <div class="section-title">Pro Builder Addon</div>
+  <a class="clickable" href="https://www.mediafire.com/file/4fdugfl35klq3oq/Pro_Builder_addon_.mcaddon./file" target="_blank">DOWNLOAD</a>
+</div>
+
+<div class="section">
+  <div class="section-title">Raft Survival</div>
+  <a class="clickable" href="https://www.mediafire.com/file/e9xwrlug2d8oyq0/Raft_Survival.mctemplate/file" target="_blank">DOWNLOAD</a>
+</div>
+
+<div class="section">
+  <div class="section-title">Real Graphics v1</div>
+  <a class="clickable" href="https://www.mediafire.com/file/7wb9pvtemy9h9wa/Real_Graphics_v1../file" target="_blank">DOWNLOAD</a>
+</div>
+
+<div class="section">
+  <div class="section-title">Realism Plus Addon  </div>
+  <a class="clickable" href="https://www.mediafire.com/file/phkbr7snxw7605x/Realism-Plus-Addon--.mcaddon/file" target="_blank">DOWNLOAD</a>
+</div>
+
+<div class="section">
+  <div class="section-title">Realism Effects Addon  </div>
+  <a class="clickable" href="https://www.mediafire.com/file/4unypogtljqejww/Realism-Effects-Addon--.mcaddon/file" target="_blank">DOWNLOAD</a>
+</div>
+
+<div class="section">
+  <div class="section-title">Cave Dweller</div>
+  <a class="clickable" href="https://www.mediafire.com/file/fud457go5hmsuay/Cave_Dweller.mcaddon./file" target="_blank">DOWNLOAD</a>
+</div>
+
+<div class="section">
+  <div class="section-title">Combine Ores 3</div>
+  <a class="clickable" href="https://www.mediafire.com/file/ouocc6ntsoj5l24/Combine_Ores_3.mcaddon./file" target="_blank">DOWNLOAD</a>
+</div>
+
+<div class="section">
+  <div class="section-title">Conquest</div>
+  <a class="clickable" href="https://www.mediafire.com/file/nek4qtxjp10ohxq/Conquest./file" target="_blank">DOWNLOAD</a>
+</div>
+
+<div class="section">
+  <div class="section-title">Construction Addon</div>
+  <a class="clickable" href="https://www.mediafire.com/file/rhzja0ep9zggqck/Construction-Addon.mcaddon./file" target="_blank">DOWNLOAD</a>
+</div>
+
+<div class="section">
+  <div class="section-title">Craft Redstone Addon  </div>
+  <a class="clickable" href="https://www.mediafire.com/file/zjn9x1z6jwwpgbs/Craft-Redstone-Addon--.mcaddon/file" target="_blank">DOWNLOAD</a>
+</div>
+
+<div class="section">
+  <div class="section-title">Decoration Addon</div>
+  <a class="clickable" href="https://www.mediafire.com/file/76dldbk6rpcu6w8/Decoration-Addon.mcaddon./file" target="_blank">DOWNLOAD</a>
+</div>
+<div class="section">
+  <div class="section-title">Dinosaur Era</div>
+  <a class="clickable" href="https://www.mediafire.com/file/xd903be2ubvkbdh/Dinosaur-Era.mcaddon./file" target="_blank">DOWNLOAD</a>
+</div>
+
+<div class="section">
+  <div class="section-title">Dinosaurs 1.1</div>
+  <a class="clickable" href="https://www.mediafire.com/file/rj5w77hvitnom2w/Dinosaurs_1.1_.mcaddon/file" target="_blank">DOWNLOAD</a>
+</div>
+
+<div class="section">
+  <div class="section-title">Dinosaurs Addon (HoneyForst)</div>
+  <a class="clickable" href="https://www.mediafire.com/file/xzj3c5kx2jkzczf/Dinosaurs-Addon_%2528HoneyForst%2529.mcaddon./file" target="_blank">DOWNLOAD</a>
+</div>
+<div class="section">
+  <div class="section-title">Warden Add-on</div>
+  <a class="clickable" href="https://www.mediafire.com/file/pvq0q4j0ox6721o/Warden_.mcaddon/file" target="_blank">DOWNLOAD</a>
+</div>
+<div class="section">
+  <div class="section-title">Waypoints Add-on</div>
+  <a class="clickable" href="https://www.mediafire.com/file/bpq8sroarsvz7k7/Waypoints-Addon.mcaddon.zip/file" target="_blank">DOWNLOAD</a>
+</div>
+
+<div class="section">
+</div>
+<button class="back-button" onclick="goBack()">Back</button>
+</div>
+
+<script>
+
+        function goBack() {
+            const sections = document.querySelectorAll('.hidden-section');
+            sections.forEach(section => {
+                section.style.display = 'none';
+            });
+            document.getElementById('mainSection').style.display = 'block';
+            // Scroll back to the main section
+            document.getElementById('mainSection').scrollIntoView({ behavior: 'smooth' });
+        }
+
+        function filterContent(sectionId, searchTerm) {
+            const section = document.getElementById(sectionId);
+            const items = section.getElementsByClassName('section-title');
+            const filter = searchTerm.toLowerCase();
+            for (let i = 0; i < items.length; i++) {
+                const title = items[i].textContent || items[i].innerText;
+                if (title.toLowerCase().indexOf(filter) > -1) {
+                    items[i].parentElement.style.display = '';
+                } else {
+                    items[i].parentElement.style.display = 'none';
+                }
+            }
+        }
+    </script>
+</div></body>
+</html>
